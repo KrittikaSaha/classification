@@ -29,9 +29,9 @@ def readInNumpy(traindir="train_data.csv",train_labels="train_labels.csv",testdi
 
 def readInPandas(traindir="train_data.csv",train_labels="train_labels.csv",testdir="test_data.csv"):
     import pandas as pd
-    train = pd.read_csv(traindir,header=None)
-    train_labels = pd.read_csv(train_labels)
-    test =  pd.read_csv(testdir,header=None)'
+    train = pd.read_csv(traindir,header=None,error_bad_lines=False)
+    train_labels = pd.read_csv(train_labels,error_bad_lines=False)
+    #test =  pd.read_csv(testdir,header=None)
     return([train,train_labels,test])
 
 [train,train_labels,test] = readInPandas()
@@ -50,7 +50,7 @@ def dropHighCorrelation(data):
     low_cor_data = data.drop(data.columns[to_drop], axis=1)
     return(low_cor_data)
 
-data_low_cor = dropHighCorrelation(subsample)
+#data_low_cor = dropHighCorrelation(subsample)
 
 ##########################333 FIRST WE WILL TRY TO REDUCE THE DIMENSIONALITY #########33
 # https://datascience.stackexchange.com/questions/4942/high-dimensional-data-what-are-useful-techniques-to-know
